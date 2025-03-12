@@ -1,4 +1,4 @@
-import const as C
+from harmonic_tone_visible import const as C
 import numpy as np
 import streamlit as st
 from audio_recorder_streamlit import audio_recorder
