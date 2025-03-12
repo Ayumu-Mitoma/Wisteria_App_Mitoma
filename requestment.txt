@@ -1,0 +1,7 @@
+librosa
+numpy
+noisereduce
+soundfile
+streamlit
+audio-recorder-streamlit
+pandas
