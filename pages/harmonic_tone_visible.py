@@ -80,7 +80,7 @@ if option == "今から音を録音する":
         if ana == True:
             with st.spinner("処理中..."):
                 cqt_21 = ap.create_CQT_21(noise_wav_io)
-                row_84 = ap.create_12_data_beta(cqt_21)
+                row_84 = ap.create_12_data(cqt_21)
                 peak_row = ap1.max_peak_tuning_row(row_84, tone)
                 peak, tone_peak, peak_only = ap1.peak_extraction(peak_row)
                 st.session_state["result"] = True
@@ -127,7 +127,7 @@ elif option == "録音した音を選ぶ":
         if ana == True:
             with st.spinner("処理中..."):
                 cqt_21 = ap.create_CQT_21(noise_wav_io)
-                row_84 = ap.create_12_data_beta(cqt_21)
+                row_84 = ap.create_12_data(cqt_21)
                 peak_row = ap.max_peak_tuning_row(row_84, tone)
                 peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
                 st.session_state["result2"] = True
