@@ -1,7 +1,7 @@
 import numpy as np
 import librosa
 import noisereduce as nr
-import const as C
+from harmonic_tone_visible import const as C
 import soundfile as sf
 import matplotlib.pyplot as plt
 import io
