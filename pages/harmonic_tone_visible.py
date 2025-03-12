@@ -82,7 +82,7 @@ if option == "今から音を録音する":
                 cqt_21 = ap.create_CQT_21(noise_wav_io)
                 row_84 = ap.create_12_data(cqt_21)
                 peak_row = ap.max_peak_tuning_row(row_84, tone)
-                peak, tone_peak, peak_only = ap1.peak_extraction(peak_row)
+                peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
                 st.session_state["result"] = True
     if st.session_state["result"] == True:
         df = pd.DataFrame({
