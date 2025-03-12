@@ -23,7 +23,7 @@ def noise_reducer(data, num=0.5):
     
     return noise_reduce_data
 
-def create_CQT_20(noise_data):
+def create_CQT_21(noise_data):
     cqt_all = []
     data_norm = librosa.util.normalize(noise_data)
     for i in range(21):
@@ -86,7 +86,7 @@ def peak_extraction(data, num=15):
             peak_index.append(round(peak[i],2))
     return peak, tone_peak, peak_index
 
-def create_12_data_beta(data):
+def create_12_data(data):
     bins = int(C.BINS_PER_OCTAVE / 12)
     data_a = np.zeros([21, len(data[0])])
     data_84 = np.zeros([21,84])    
