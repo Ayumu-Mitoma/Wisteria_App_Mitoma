@@ -5,4 +5,4 @@ soundfile
 streamlit
 audio-recorder-streamlit
 pandas
-audio_processing
+audio-processing
