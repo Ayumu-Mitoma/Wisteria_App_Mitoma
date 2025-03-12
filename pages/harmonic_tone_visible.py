@@ -40,7 +40,7 @@ def display_cqt_value(data, peak_tone, tone):
     st.pyplot(fig)
 
 #UI部分記述
-st.title("倍音成分を見てみよう！")
+st.title("倍音見える君")
 st.text("サイドバーから操作を選んでね")
 st.text("")
 choice = ["今から音を録音する", "録音した音を選ぶ"]
