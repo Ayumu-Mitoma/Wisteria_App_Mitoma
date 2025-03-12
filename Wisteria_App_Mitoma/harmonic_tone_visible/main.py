@@ -27,8 +27,15 @@ def display_cqt_value(data, peak_tone, tone):
     ax.set_xticks(index)
     ax.set_xticklabels(peak_tone)
     for i in range(len(peak_tone)):
-        if tone in peak_tone[i]:
-            rect[i].set_color('yellow')    
+        if "#" in tone:
+            if tone in peak_tone[i]:
+                rect[i].set_color('yellow')
+        else:
+            if tone in peak_tone[i]:
+                if "#" in peak_tone[i]:
+                    pass
+                else:
+                    rect[i].set_color('yellow')
     ax.set_yticks([])
     st.pyplot(fig)
 
@@ -59,8 +66,8 @@ if option == "今から音を録音する":
     #録音後の処理
     if audio_bytes:
         with BytesIO(audio_bytes)as f:
-            data = ap.byte_to_audio(f)
-        noise_wav_io = ap.noise_reducer(data, num = 0.8)
+            data = ap2.byte_to_audio(f)
+        noise_wav_io = ap2.noise_reducer(data, num = 0.8)
 
         st.session_state["analysis"] = True
 
@@ -75,7 +82,7 @@ if option == "今から音を録音する":
                 cqt_21 = ap2.create_CQT_20(noise_wav_io)
                 row_84 = ap2.create_12_data_beta(cqt_21)
                 peak_row = ap2.max_peak_tuning_row(row_84, tone)
-                peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
+                peak, tone_peak, peak_only = ap2.peak_extraction(peak_row)
                 st.session_state["result"] = True
     if st.session_state["result"] == True:
         df = pd.DataFrame({
@@ -105,9 +112,9 @@ elif option == "録音した音を選ぶ":
     if file is not None:
         file_name = file.name.lower()
         if file_name.endswith(".wav") or file_name.endswith(".mp3"):
-            data = ap.byte_to_audio(file)
+            data = ap2.byte_to_audio(file)
             st.session_state["analysis2"] = True
-            noise_wav_io = ap.noise_reducer(data, num = 0.8)
+            noise_wav_io = ap2.noise_reducer(data, num = 0.8)
         else:
             st.error("対応しているファイルはwavまたはmp3だけです")
             st.stop()
@@ -122,7 +129,7 @@ elif option == "録音した音を選ぶ":
                 cqt_21 = ap2.create_CQT_20(noise_wav_io)
                 row_84 = ap2.create_12_data_beta(cqt_21)
                 peak_row = ap2.max_peak_tuning_row(row_84, tone)
-                peak, tone_peak, peak_only = ap.peak_extraction(peak_row)
+                peak, tone_peak, peak_only = ap2.peak_extraction(peak_row)
                 st.session_state["result2"] = True
     if st.session_state["result2"] == True:
         df = pd.DataFrame({
