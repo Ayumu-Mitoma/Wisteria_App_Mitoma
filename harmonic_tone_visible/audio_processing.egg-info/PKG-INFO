@@ -1,9 +1,0 @@
-Metadata-Version: 2.2
-Name: audio_processing
-Version: 0.0.1
-Summary: audio process function for harmonic tone visible app in my app
-Author: Ayumu Mitoma
-License: MIT
-Dynamic: author
-Dynamic: license
-Dynamic: summary

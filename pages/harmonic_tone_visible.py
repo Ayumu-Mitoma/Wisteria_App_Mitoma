@@ -6,7 +6,7 @@ from io import BytesIO
 import time
 import pandas as pd
 import matplotlib.pyplot as plt
-import audio_processing as ap
+from harmonic_tone_visible import audio_processing as ap
 
 #toneの定義
 tone_en = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
