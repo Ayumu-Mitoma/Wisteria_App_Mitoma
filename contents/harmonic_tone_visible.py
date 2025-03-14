@@ -91,7 +91,6 @@ if option == "今から音を録音する":
         })
         st.dataframe(df.T)
         display_cqt_value(peak_only, tone_peak, tone)
-        st.bar_chart(df.T)
         st.text("横軸：強く鳴っている音階の名前")
         st.text("縦軸：音の強さ")
         st.text("音階の対応表")
