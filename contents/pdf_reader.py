@@ -52,7 +52,7 @@ st.markdown(
 )
 
 # JavaScriptからのメッセージを処理
-message = st.aaquery_params().get('message', [''])[0]
+message = st.query_params().get('message', [''])[0]
 
 if message == 'next':
     st.session_state.image_index = (st.session_state.image_index + 1) % len(images)
