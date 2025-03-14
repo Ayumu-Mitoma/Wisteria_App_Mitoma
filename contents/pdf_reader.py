@@ -9,7 +9,7 @@ score_file = st.file_uploader("楽譜のpdfファイルを選択")
 
 if score_file is not None:
     file_name = score_file.name.lower()
-    if file_name.endwith(".pdf"):
+    if file_name.endswith(".pdf"):
         images = pp.pdf_to_images(score_file)
         st.text(len(images))
         if len(images) != 0:
