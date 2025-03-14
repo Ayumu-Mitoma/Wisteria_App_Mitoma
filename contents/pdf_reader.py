@@ -7,10 +7,11 @@ st.text("自分のスマホにある楽譜のpdfファイルを選択してね")
 st.session_state["visible"] = False
 score_file = st.file_uploader("楽譜のpdfファイルを選択")
 
-images = pp.pdf_to_images(score_file)
-st.text(len(images))
-if len(images) != 0:
-    st.session_state["visible"] = True
+if score_file is not None:
+    images = pp.pdf_to_images(score_file)
+    st.text(len(images))
+    if len(images) != 0:
+        st.session_state["visible"] = True
 
 if st.session_state["visible"] == True:
     #楽譜の表示と切り替え
