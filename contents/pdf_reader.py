@@ -8,10 +8,15 @@ st.session_state["visible"] = False
 score_file = st.file_uploader("楽譜のpdfファイルを選択")
 
 if score_file is not None:
-    images = pp.pdf_to_images(score_file)
-    st.text(len(images))
-    if len(images) != 0:
-        st.session_state["visible"] = True
+    file_name = score_file.name.lower()
+    if file_name.endwith(".pdf"):
+        images = pp.pdf_to_images(score_file)
+        st.text(len(images))
+        if len(images) != 0:
+            st.session_state["visible"] = True
+    else:
+        st.error("対応しているファイルはpdfのみです")
+        st.stop()
 
 if st.session_state["visible"] == True:
     #楽譜の表示と切り替え
