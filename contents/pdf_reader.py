@@ -9,6 +9,8 @@ score = st.file_uploader("楽譜のpdfファイルを選択")
 # 画像リスト
 images = ["image1.jpg", "image2.jpg", "image3.jpg"]
 
+
+#楽譜の表示と切り替え
 # 現在のインデックスをセッション状態で管理
 if "image_index" not in st.session_state:
     st.session_state.image_index = 0
@@ -40,10 +42,14 @@ st.markdown(
         right: 0;
         background: rgba(0, 0, 0, 0.2);
     }
+    .full-width-image{
+        width:100%;
+        height:auto;
+    }
     </style>
 
     <div class="image-container">
-        <img src="{current_image}" alt="画像">
+        <img src="{current_image}" alt="楽譜">
         <div class="left-overlay" onclick="window.parent.postMessage('prev', '*')"></div>
         <div class="right-overlay" onclick="window.parent.postMessage('next', '*')"></div>
     </div>

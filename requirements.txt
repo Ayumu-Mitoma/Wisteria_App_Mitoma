@@ -5,3 +5,4 @@ soundfile
 streamlit
 audio-recorder-streamlit
 pandas
+pdf2image
