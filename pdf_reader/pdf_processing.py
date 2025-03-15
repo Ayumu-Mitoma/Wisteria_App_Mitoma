@@ -1,9 +1,10 @@
 import numpy as np
 import glob
 from pdf_reader import const as C
-from pdf2image import convert_from_bytes
+import fitz
 
 def pdf_to_images(file):
-    images = convert_from_bytes(file, dpi=600)
+    docs = fitz.oepn(stream=file, filetype="pdf")
+    images = [page.get_pixamp() for page in docs]
     return images
 
