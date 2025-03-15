@@ -33,7 +33,7 @@ if st.session_state["visible"] == True:
             var width = window.innerWidth;
             
             clickCount += 1;
-            var streamlit = window.parent || window;
+            var streamlit = window.parent;
             streamlit.postMessage({{type: "updateClickCount", count: clickcount}}, "*");
 
             if (x < width / 2){{
