@@ -34,7 +34,7 @@ if st.session_state["visible"] == True:
             
             clickCount += 1;
             var streamlit = window.parent || window;
-            streamlit.postMessage({type: "updateClickCount", count: Clickcount}, "*");
+            streamlit.postMessage({type: "updateClickCount", count: clickcount}, "*");
 
             if (x < width / 2){{
                 //左半分をクリック
