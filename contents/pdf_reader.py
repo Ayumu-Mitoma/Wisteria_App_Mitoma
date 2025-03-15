@@ -24,15 +24,42 @@ if st.session_state["visible"] == True:
     total_pages = len(images)
     current_page = st.session_state.current_page
 
-    img_io = images[current_page]
-    st.image(img_io, caption=f"{current_page+1}/{total_pages} ページ")
+    img_base64 = pp.get_image_base64(images[current_page])
+    js_code = f"""
+    <script>
+        function changePage(event){{
+            var x = event.clientX;
+            var width = window.innerWidth;
+            if (x < width / 2){{
+                //左半分をクリック
+                if(window.currentPage > 0){{
+                    window.currentPage -= 1;
+                }}
+            }}else{{
+                //右半分をクリック
+                if(window.currentPage < {total_pages - 1}) {{
+                    window.currentPage += 1;
+                }}
+            }}
+            //ページ変更を反映
+            var streamlit = window.parent || window;
+            streamlit.postMessage({{type: "setCurrentPage", page: window.currentPage}}, "*");
+        }}
 
-    cols = st.columns([1,1])
-    with cols[0]:
-        if st.button("前のページ", key="prev") and current_page > 0:
-            st.session_state.current_page -= 1
-            st.rerun()
-    with cols[1]:
-        if st.button("次のページ", key="next") and current_page < total_pages -1:
-            st.session_state.current_page += 1
-            st.rerun()
+        document.addEventListener("DOMContentLoaded", function(){{
+            window.currentPage = {current_page}; //初期ページ
+            var img = document.getElementById("pdf-image");
+            img.addEventlistener("click", changePage);
+        }});
+    </script>
+    """
+    #画像のHTMLコード
+    img_html = f"""
+    <img id="pdf-image" src="data:image/png;base64,{img_base64}">
+        style="width:100%; cursor:pointer;" />
+    """
+
+    st.markdown(js_code, unsafe_allow_html=True)
+    st.markdown(img_html, unsafe_allow_html=True)
+
+    st.session_state.current_page = st.query_params.get("page", [current_page])[0]

@@ -3,6 +3,7 @@ from pdf_reader import const as C
 import fitz
 from PIL import Image
 import io
+import base64
 
 def pdf_to_images(file):
     doc = fitz.open(stream = file, filetype="pdf")
@@ -19,3 +20,6 @@ def pdf_to_images(file):
         images.append(img_io)
 
     return images
+
+def get_image_base64(img_io):
+    return base64.b64encode(img_io.getvalue()).decode()
