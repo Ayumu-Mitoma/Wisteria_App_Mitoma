@@ -55,7 +55,7 @@ if st.session_state["visible"] == True:
     """
     #画像のHTMLコード
     img_html = f"""
-    <img id="pdf-image" src="data:image/png;base64,{img_base64}">
+    <img id="pdf-image" src="data:image/png;base64,{img_base64}"
         style="width:100%; cursor:pointer;" />
     """
 
