@@ -27,9 +27,15 @@ if st.session_state["visible"] == True:
     img_base64 = pp.get_image_base64(images[current_page])
     js_code = f"""
     <script>
+        var clickCount = 0;
         function changePage(event){{
             var x = event.clientX;
             var width = window.innerWidth;
+            
+            clickCount += 1;
+            var streamlit = window.parent || window;
+            streamlit.postMessage({type: "updateClickCount", count: Clickcount}, "*");
+
             if (x < width / 2){{
                 //左半分をクリック
                 if(window.currentPage > 0){{
