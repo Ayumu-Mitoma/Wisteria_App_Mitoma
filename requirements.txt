@@ -6,3 +6,4 @@ streamlit
 audio-recorder-streamlit
 pandas
 pymupdf
+streamlit-image-select
