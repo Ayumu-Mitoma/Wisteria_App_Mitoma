@@ -65,7 +65,12 @@ if st.session_state["visible"] == True:
         style="width:100%; cursor:pointer;" />
     """
 
+    if "click_count" not in st.session_state:
+        st.session_state.click_count = 0
+
     st.markdown(js_code, unsafe_allow_html=True)
     st.markdown(img_html, unsafe_allow_html=True)
 
     st.session_state.current_page = st.query_params.get("page", [current_page])[0]
+
+    st.write(f"クリック回数: {st.session_state.click_count}")
