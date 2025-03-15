@@ -6,5 +6,5 @@ import fitz
 def pdf_to_images(file):
     docs = fitz.open(stream=file, filetype="pdf")
     images = [page.get_pixmap() for page in docs]
-    return images
+    return [img.pil_save() for img in images]
 
